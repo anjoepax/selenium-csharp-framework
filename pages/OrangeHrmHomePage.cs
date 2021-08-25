@@ -10,8 +10,8 @@ namespace selenium_nunit
 
         public OrangeHrmLoginPage LogoutToApplication()
         {
-            Click(_welcomeLink);
-            Click(_logoutLink);
+            Click(_welcomeLink, WaitStrategy.VISIBLE);
+            Click(_logoutLink, WaitStrategy.VISIBLE);
             return new OrangeHrmLoginPage();
         }
     }

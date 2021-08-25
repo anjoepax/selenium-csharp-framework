@@ -3,7 +3,7 @@ using System;
 
 namespace selenium_nunit
 {
-    public class Driver
+    public sealed class Driver
     {
         private Driver(){}
 
