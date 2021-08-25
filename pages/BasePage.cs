@@ -23,43 +23,25 @@ namespace selenium_nunit
         
 
         /*** Clicking of element ***/
-        public void Click(By locator) 
+        public void Click(By locator, WaitStrategy strategy) 
         {
-            WaitForElementToDisplay(locator);
+            ExplicitWaitFactory.PerformExplicitWait(locator, strategy);
             FindElement(locator).Click();
         }
 
         /*** Type text ***/
-        public void Type(By locator, string text)
+        public void Type(By locator, WaitStrategy waitStrategy, string text)
         {
+            ExplicitWaitFactory.PerformExplicitWait(locator, waitStrategy);
             FindElement(locator).SendKeys(text);
         }
 
         /*** Type text and enter ***/
-        public void TypeAndEnter(By locator, string text)
-        {
+        public void TypeAndEnter(By locator, WaitStrategy waitStrategy, string text)
+        {   
+            ExplicitWaitFactory.PerformExplicitWait(locator, waitStrategy);
             FindElement(locator).SendKeys(text);
             FindElement(locator).SendKeys(Keys.Enter);
-        }
-
-        /*** Private method for waiting ***/
-        private void WaitForElementToDisplay(By locator)
-        {
-            new WebDriverWait(DriverFactory.GetDriver(), TimeSpan.FromSeconds(30))
-                .Until(_webDriver => FindElement(locator).Displayed);
-        }
-
-        private void WaitForElementToBeDetachedInDom(By locator)
-        {
-            WebDriverWait wait = new WebDriverWait(DriverFactory.GetDriver(), TimeSpan.FromSeconds(30));
-            wait.IgnoreExceptionTypes(new[] {typeof(NoSuchElementException)});
-            wait.Until(_webDriver => !FindElement(locator).Displayed);
-        }
-
-        private void WaitForElementTextToBe(By locator, string text)
-        {
-            new WebDriverWait(DriverFactory.GetDriver(), TimeSpan.FromSeconds(30))
-                .Until(_webDriver => FindElement(locator).Text == text);
         }
     }
 }

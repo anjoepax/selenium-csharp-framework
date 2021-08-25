@@ -11,14 +11,14 @@ namespace selenium_nunit
 
         public OrangeHrmLoginPage EnterCredentials(string username, string password)
         {
-            Type(_usernameField, username);
-            Type(_passwordField, password);
+            Type(_usernameField, WaitStrategy.VISIBLE, username);
+            Type(_passwordField, WaitStrategy.VISIBLE, password);
             return this;
         }
 
         public OrangeHrmHomePage ClickLoginButton()
         {
-            Click(_loginButton);
+            Click(_loginButton, WaitStrategy.VISIBLE);
             return new OrangeHrmHomePage();
         }
 

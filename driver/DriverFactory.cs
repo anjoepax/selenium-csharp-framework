@@ -8,7 +8,7 @@ using WebDriverManager.DriverConfigs.Impl;
 
 namespace selenium_nunit
 {
-    public class DriverFactory
+    public sealed class DriverFactory
     {
 
         private static ThreadLocal<IWebDriver> dr;
